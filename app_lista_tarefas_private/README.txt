@@ -1,0 +1,1 @@
+Esse diretorio pertence aos arquivos protegidos
