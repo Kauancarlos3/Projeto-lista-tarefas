@@ -10,14 +10,14 @@ class Conexao{
         try{
 
             $conexao = new PDO(
-                "mysql:host=$this->$host;dbname=$this->$dbname",
-                "$this->$user",
-                "$this->$pass"
+                "mysql:host=$this->host;dbname=$this->dbname",
+                "$this->user",
+                "$this->pass"
             );
 
             return $conexao;
 
-        } catch($PDOExceprion $e){
+        } catch(PDOException $e){
             echo '<p>'.$e->getMessege().'<p>';
         }
     }
