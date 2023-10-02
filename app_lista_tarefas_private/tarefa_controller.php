@@ -13,12 +13,18 @@
 
         $conexao = new Conexao();
 
-        $tarefaservice = new TarefaService($conexao, $tarefa);
-        $tarefaservice->inserir();
+        $tarefaService = new TarefaService($conexao, $tarefa);
+        $tarefaService->inserir();
 
         header('Location: nova_tarefa.php?inclusao=1');
     } else if($acao == 'recuperar'){
-        echo 'chegamos aqui!';
+        
+        $tarefa = new Tarefa();
+        $conexao = new Conexao();
+
+        $tarefaService = new TarefaService($conexao, $tarefa); 
+        $tarefas = $tarefaService->recuperar();
+
     }
 
 ?>
