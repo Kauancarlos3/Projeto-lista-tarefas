@@ -19,28 +19,39 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 		<script>
-			function editar(id){
+			function editar(id, txt_tarefa){
 				//criar um form de edição
 				let form = document.createElement('form');
 				form.action = '#';
 				form.method = 'post';
+				form.className = 'row';
 
 				//criar um input
 				let inputTarefa = document.createElement('input');
 				inputTarefa.type = 'text';
 				inputTarefa.name = 'tarefa';
-				inputTarefa.className = 'form-control';
+				inputTarefa.className = 'col-9 form-control';
+				inputTarefa.value = txt_tarefa;
+
+				//criar um input hidden para guardar o id da tarefa
+				let inputId = document.createElement('input');
+				inputId.type = 'hidden';
+				inputId.name = 'id';
+				inputId.value = id;
 
 				//criar um botão
 				let button = document.createElement('button');
 				button.type = 'submit';
-				button.className = 'btn btn-info';
+				button.className = 'col-3 btn btn-info';
 				button.innerHTML = 'Atualizar';
 
 				//Vamos criar um hierarquia
 
 				//incluir inputTarefa no form - elemento criado de forma programatica
 				form.appendChild(inputTarefa);
+
+				//incluir inputId no fomr
+				form.appendChild(inputId);
 
 				//incluir button no form
 				form.appendChild(button);
@@ -56,7 +67,7 @@
 				tarefa.innerHTML = '';
 
 				//incluir o form na pagina - insertBefore permite fazer com que uma arvore de elementos HTML seja inserida dentro de um outro elemento já renderizado
-				tarefa.insertBefore();
+				tarefa.insertBefore(form, tarefa[0]);
 
 			}
 
@@ -97,7 +108,7 @@
 										</div>
 										<div class="col-sm-3 mt-2 d-flex justify-content-between">
 											<i class="fas fa-trash-alt fa-lg text-danger" onclick="excluir()"></i>
-											<i class="fas fa-edit fa-lg text-info" onclick="editar(<?php echo$tarefa->id?>)"></i>
+											<i class="fas fa-edit fa-lg text-info" onclick="editar(<?php echo$tarefa->id?>,'<?php echo $tarefa->tarefa ?>')"></i>
 											<i class="fas fa-check-square fa-lg text-success"></i>
 										</div>
 									</div>						
